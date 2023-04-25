@@ -29,33 +29,31 @@ var questions =[
 
 
 ]
-var score
+var score = document.querySelector("#scoreRes")
 var i =0
 var time =20
-function stopClock() {
-    clearInterval()
-}
+
 
 document.getElementById('btn').onclick=function() {
     showQuestion();
 
-    setInterval(
+    var runtime = setInterval(
         function(){
             if(time>0){
 
                 time --
-                document.getElementById('time').innerHTML = time
+                document.getElementById('time').innerHTML = "Time = " + time;
             }
-            else if(time<1) {
-                clearInterval();
+            if(time<1) {
+                clearInterval(runtime);
                 //alert('Time is up!');
             }
-            //else if(i === 4) {
+            if(i === 4) {
                 //console.log("i=",i)
-                //clearInterval();
-                //score = time;
-                //alert("Your score is " + score);
-            //}
+                score.textContent = "Score = " + time;
+                clearInterval(runtime);
+                document.getElementById("time").remove();
+            }
         }
         , 1000 //one second
     )
@@ -94,10 +92,7 @@ document.getElementById('questions').onclick = function(e) {
     }
     //goes to next question
         i++
-        if(i === 4) {
-            clearInterval()
-            score = time;
-        }
+    
     showQuestion()
 
 }
