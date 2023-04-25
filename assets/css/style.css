@@ -1,0 +1,19 @@
+
+h1 {
+    font-size: 300%;
+    color: blue;
+  }
+
+  button {
+    width: 250px;
+    margin: 0 .5%;
+    font-size: 100%;
+    color: white;
+    background-color: purple;
+    border: 3px solid #13293d;
+   
+  }
+
+  #time {
+    margin-right: 10px;
+  }
