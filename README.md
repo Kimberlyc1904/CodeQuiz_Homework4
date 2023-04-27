@@ -37,7 +37,7 @@ To use the CodeQuiz, click the start button. You are presented with a question a
 
 https://kimberlyc1904.github.io/CodeQuiz_Homework4/
 
-![screenshot](assets/css/images/screenshot.png)
+![screenshot](assets/images/ScreenShot.png)
 
 ## Credits
 
