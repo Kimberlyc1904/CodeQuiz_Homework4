@@ -1,6 +1,3 @@
-
-
-
 var questions =[
     {
         title: "What does CSS stand for?",
@@ -33,8 +30,10 @@ var score = document.querySelector("#scoreRes")
 var i =0
 var time =20
 
+showsButton();
 
-document.getElementById('btn').onclick=function() {
+document.getElementById('sbtn').onclick=function() {
+    document.getElementById('btn').innerHTML = "";
     showQuestion();
 
     var runtime = setInterval(
@@ -50,9 +49,10 @@ document.getElementById('btn').onclick=function() {
             }
             if(i === 4) {
                 //console.log("i=",i)
-                score.textContent = "Score = " + time;
+                score.textContent = "Your Score is = " + time;
                 clearInterval(runtime);
                 document.getElementById("time").remove();
+                showInput();
             }
         }
         , 1000 //one second
@@ -60,10 +60,7 @@ document.getElementById('btn').onclick=function() {
 
 }
 
-
-
 function showQuestion(){
-
     document.getElementById('questions').innerHTML =
     `
     <h3>${questions[i].title}</h3>
@@ -74,7 +71,44 @@ function showQuestion(){
     `
 }
 
+function showsButton(){
+document.getElementById('btn').innerHTML =
+'<button id="sbtn">Start</button>'
+};
 
+function showInput(){
+    document.getElementById('questions').innerHTML = "";
+    document.getElementById('showRight').innerHTML = "";
+    document.getElementById('input').innerHTML = 
+    `
+    <label>Enter your Initials<label>
+    <input type="text" id="initials"> 
+    <button type="button" id="sbutton">Submit</button>
+    `
+    var submitButton = document.getElementById('sbutton');
+
+    submitButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        var initials = document.getElementById('initials').value;
+    
+        var highScore = {
+          initials: initials,
+          score: time
+        };
+
+        if (localStorage.getItem(initials) !==null && highScore.score < localStorage.getItem(initials)  ){
+            
+        } else {
+            localStorage.setItem(highScore.initials, highScore.score);
+        }
+
+        //localStorage.setItem("userScore", JSON.stringify(userScore));
+      renderMessage();
+    });
+
+};
+
+//event listener for answer buttons
 document.getElementById('questions').onclick = function(e) {
     var answer = e.target.innerText
     //check answer
@@ -97,24 +131,14 @@ document.getElementById('questions').onclick = function(e) {
 
 }
 
-//need to 
-//saveButton.addEventListener("click", function(event) {
-    ///event.preventDefault();
-    
-    //var userScore = {
-      //initials: initials.value,
-      //score: score.value,
-    //};
-    
-    //localStorage.setItem("userScore", JSON.stringify(userScore));
-    //renderMessage();
-    
-   // });
-    
-    //function renderMessage() {
-      //var lastGrade = JSON.parse(localStorage.getItem("userScore"));
-      //if (lastGrade !== null) {
-       // document.querySelector(".message").textContent = lastGrade.student + 
-     // }
-   // }
+    function renderMessage() {
+      var initials = document.getElementById('initials').value;
+      var highScore = localStorage.getItem(initials);
+
+
+     if (highScore !== null) {
+        document.getElementById('message').textContent = "Your High score is " + highScore;
+        score.textContent = "";
+     }
+    };
     

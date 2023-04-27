@@ -1,8 +1,12 @@
-
 h1 {
     font-size: 300%;
     color: blue;
   }
+
+label {
+  color: blue;
+}
+
 
   button {
     width: 250px;
@@ -16,4 +20,11 @@ h1 {
 
   #time {
     margin-right: 10px;
+  }
+
+  #input {
+    position: relative;
+    bottom: -50px;
+    right: -15px;
+
   }
